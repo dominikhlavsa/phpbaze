@@ -15,8 +15,16 @@
     $sql = "SELECT * FROM users WHERE username='" . $_POST['username'] ."' AND password = '" . $_POST['password'] . "'";
     $result = $conn->query($sql);
 
-    echo('Automobil je unesen!<br>');
-    echo('<a href="index.php">Povratak na prikaz automobila</a>');
+    if($result->num_rows > 0) {
+        $row = $result ->fetch_assoc();
+        session_start();
+        $_SESSION['id'] = $row['id'];
+        header('Location: index.php');
+    }
+    else {
+        header('Location: login.php?login=fail');
+    }
+
     ?>
 </p>
 </body>

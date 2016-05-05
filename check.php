@@ -2,7 +2,7 @@
 session_start();
 
 if(!isset($_SESSION['id'])){
-    echo('ma daj vamo');
+    header('Location: login.php');
     die();
 }
 
